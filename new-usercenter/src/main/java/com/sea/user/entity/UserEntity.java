@@ -12,7 +12,7 @@ public class UserEntity
 	/**
 	 * 用戶id
 	 */
-	private long userId;
+	private long id;
 
 	/**
 	 * 用戶名
@@ -25,33 +25,23 @@ public class UserEntity
 	private String password;
 
 	/**
-	 * 手机号码
-	 */
-	private String mobilePhone;
-
-	/**
-	 * 昵称
-	 */
-	private String nickName;
-
-	/**
 	 * 用户状态
 	 */
-	private UserStatus userStatus;
+	private int userStatus;
 
 	/**
 	 * 用戶角色
 	 */
-	private Role role;
+	private String roles;
 
-	public long getUserId()
+	public long getId()
 	{
-		return userId;
+		return id;
 	}
 
-	public void setUserId(long userId)
+	public void setId(long id)
 	{
-		this.userId = userId;
+		this.id = id;
 	}
 
 	public String getUserName()
@@ -74,44 +64,25 @@ public class UserEntity
 		this.password = password;
 	}
 
-	public String getMobilePhone()
-	{
-		return mobilePhone;
-	}
-
-	public void setMobilePhone(String mobilePhone)
-	{
-		this.mobilePhone = mobilePhone;
-	}
-
-	public String getNickName()
-	{
-		return nickName;
-	}
-
-	public void setNickName(String nickName)
-	{
-		this.nickName = nickName;
-	}
-
-	public UserStatus getUserStatus()
+	public int getUserStatus()
 	{
 		return userStatus;
 	}
 
-	public void setUserStatus(UserStatus userStatus)
+	public void setUserStatus(int userStatus)
 	{
 		this.userStatus = userStatus;
 	}
 
-	public Role getRole()
+	public String getRoles()
 	{
-		return role;
+		return roles;
 	}
 
-	public void setRole(Role role)
+	public void setRoles(String roles)
 	{
-		this.role = role;
+		this.roles = roles;
 	}
 
+	
 }

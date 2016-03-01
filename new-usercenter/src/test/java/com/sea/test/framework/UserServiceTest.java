@@ -14,7 +14,7 @@ public class UserServiceTest extends BaseTest
 
 	@Autowired
 	private IUserService userService;
-	
+
 	@Autowired
 	private IUserDao userDao;
 
@@ -23,10 +23,10 @@ public class UserServiceTest extends BaseTest
 	{
 		UserEntity user = new UserEntity();
 		user.setUserName("zhangsan7");
-		user.setRole(Role.CONSUMER);
-		user.setUserStatus(UserStatus.NORMAL);
+		user.setRoles(Role.ADMIN + "," + Role.CONSUMER);
+		user.setUserStatus(UserStatus.NORMAL.getInt());
 		userService.register(user);
-		System.out.println(user.getUserId());
+		System.out.println(user.getId());
 	}
 
 	@Test
@@ -35,6 +35,5 @@ public class UserServiceTest extends BaseTest
 		UserEntity user = userService.getUserById(3);
 		System.out.println(user.getUserName());
 	}
-	
 
 }
