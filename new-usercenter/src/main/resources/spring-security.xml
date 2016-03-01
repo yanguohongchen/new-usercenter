@@ -1,0 +1,82 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<security:http create-session="stateless" pattern="/api/**"
+		entry-point-ref="digestEntryPoint">
+		<security:intercept-url pattern="/**"
+			access="hasRole('ROLE_USER')" />
+		<security:access-denied-handler ref="myAccessDeniedHandler" />
+		<security:custom-filter ref="digestFilter"
+			after="BASIC_AUTH_FILTER" />
+	</security:http>
+	<security:http pattern="/**">
+		<security:intercept-url pattern="/**"
+			access="hasRole('ROLE_USER')" />
+		<security:form-login
+			authentication-failure-handler-ref="myAuthenticationFailureHandler"
+			default-target-url='/index.jsp' />
+		<security:logout delete-cookies="JSESSIONID" />
+		<security:access-denied-handler ref="myAccessDeniedHandler" />
+		<security:session-management>
+			<security:concurrency-control
+				max-sessions="1" />
+		</security:session-management>
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider
+			user-service-ref="myUserDetailsServiceImpl">
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+
+	<bean id="digestFilter"
+		class="org.springframework.security.web.authentication.www.DigestAuthenticationFilter">
+		<property name="userDetailsService" ref="myUserDetailsServiceImpl" />
+		<property name="authenticationEntryPoint" ref="digestEntryPoint" />
+		<!-- <property name="userCache" ref="userCache" /> -->
+	</bean>
+
+	<bean id="digestEntryPoint"
+		class="org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint">
+		<property name="realmName" value="Contacts Realm via Digest Authentication" />
+		<property name="key" value="acegi" />
+		<property name="nonceValiditySeconds" value="10" />
+	</bean>
+
+	<!-- <security:authentication-manager>
+		<security:authentication-provider
+			ref="authenticationProvider" />
+	</security:authentication-manager>
+
+	<bean id="authenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="myUserDetailsServiceImpl" />
+		<property name="userCache" ref="userCache" />
+		<property name="messageSource" ref="messageSource" />
+		<property name="passwordEncoder" ref="passwordEncode" />
+		<property name="saltSource" ref="saltSource" />
+	</bean>
+
+
+	配置密码加密类
+	<bean id="passwordEncode"
+		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+	<bean id="saltSource"
+		class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+		<property name="userPropertyToUse" value="username" />
+	</bean>
+ -->
+	<!-- <bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy"> 
+		<constructor-arg> <list> <security:filter-chain pattern="/api/**" filters=" 
+		securityContextPersistenceFilterWithASCFalse, basicAuthenticationFilter, 
+		myExceptionTranslationFilter, filterSecurityInterceptor" /> <security:filter-chain 
+		pattern="/**" filters=" securityContextPersistenceFilterWithASCTrue, formLoginFilter, 
+		myExceptionTranslationFilter, filterSecurityInterceptor" /> </list> </constructor-arg> 
+		</bean> -->
+</beans>

@@ -4,6 +4,7 @@
 	<groupId>com.cagtc</groupId>
 	<artifactId>new-usercenter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 
 	<repositories>
 		<repository>
