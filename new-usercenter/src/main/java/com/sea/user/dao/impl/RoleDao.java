@@ -18,16 +18,14 @@ public class RoleDao extends BaseDao<RoleEntity> implements IRoleDao
 	{
 
 		String sqlStr = "select roleId,roleName,roleStatus from role inner join user_role on role.id = user_role.userId  where role.id=? and role.roleStatus = 0";
-		List<RoleEntity> roleList = jdbcTemplate.query(sqlStr, new BeanPropertyRowMapper<RoleEntity>(RoleEntity.class), new Object[] { userId });
-		return roleList;
+		return jdbcTemplate.query(sqlStr, new BeanPropertyRowMapper<RoleEntity>(RoleEntity.class), new Object[] { userId });
 	}
 
 	public List<UserEntity> getUserEntityList(long userName)
 	{
 		String sqlStr = "select userId,userName,mobilePhone,nickName,role,userStatus from userentity where userName=?";
 
-		List<UserEntity> userEntityList = jdbcTemplate.query(sqlStr, new BeanPropertyRowMapper<UserEntity>(UserEntity.class),
+		return jdbcTemplate.query(sqlStr, new BeanPropertyRowMapper<UserEntity>(UserEntity.class),
 				new Object[] { userName });
-		return userEntityList;
 	}
 }

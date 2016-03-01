@@ -5,7 +5,6 @@
 	<artifactId>new-usercenter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-
 	<repositories>
 		<repository>
 			<id>public</id>
@@ -36,8 +35,7 @@
 			<artifactId>new-framework-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
-		
+
 		<dependency>
 			<groupId>com.cagtc</groupId>
 			<artifactId>new-framework-persistence-springjdbc</artifactId>
@@ -90,7 +88,6 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
@@ -132,39 +129,28 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>4.0.3.RELEASE</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.4.2</version>
 		</dependency>
+
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>4.0.3.RELEASE</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.4.2</version>
 		</dependency>
+
 		<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-core</artifactId>
-				<version>2.4.2</version>
-			</dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
 
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-databind</artifactId>
-				<version>2.4.2</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-mapper-asl</artifactId>
-				<version>1.9.13</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-core-asl</artifactId>
-				<version>1.9.13</version>
-			</dependency>
-
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
 	</dependencies>
 
 	<build>

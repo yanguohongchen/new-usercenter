@@ -2,7 +2,6 @@ package com.sea.user.dao;
 
 import com.sea.dao.impl.IBaseDao;
 import com.sea.user.entity.UserEntity;
-import com.sea.user.entity.UserEntityExam;
 
 public interface IUserDao extends IBaseDao<UserEntity>
 {
@@ -11,9 +10,6 @@ public interface IUserDao extends IBaseDao<UserEntity>
 	
 
 	UserEntity getUserEntityByUserId(long userId);
-
-
-	UserEntityExam getUserEntityExamByUserId(long userId);
 
 
 	/**
