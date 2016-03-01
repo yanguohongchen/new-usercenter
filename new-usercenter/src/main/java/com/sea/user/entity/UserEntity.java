@@ -1,6 +1,5 @@
 package com.sea.user.entity;
 
-import com.sea.framework.Role;
 
 /**
  * 

@@ -31,12 +31,12 @@ public class UserDao extends BaseDao<UserEntity> implements IUserDao
 	@Override
 	public UserEntity getUserEntityByUserId(long userId)
 	{
-		return this.getEntityById("userId", userId);
+		return this.getEntityById("id", userId);
 	}
 
 	public List<UserEntity> getUserEntityList(long userName)
 	{
-		String sqlStr = "select userId,userName,mobilePhone,nickName,role,userStatus from user_entity where userName=?";
+		String sqlStr = "select id,user_name,roles,user_status from user_entity where user_name=?";
 
 		return jdbcTemplate.query(sqlStr, new BeanPropertyRowMapper<UserEntity>(UserEntity.class), new Object[] { userName });
 	}

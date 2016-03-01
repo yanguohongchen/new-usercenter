@@ -32,7 +32,7 @@ public class UserServiceTest extends BaseTest
 	@Test
 	public void getUserEntity()
 	{
-		UserEntity user = userService.getUserById(3);
+		UserEntity user = userService.getUserById(1);
 		System.out.println(user.getUserName());
 	}
 
