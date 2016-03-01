@@ -16,7 +16,6 @@ public class UserControter
 	@RequestMapping("api/getUser")
 	public MsgResult getUser()
 	{
-		// System.out.println("getUser");
 		return new MsgResult();
 	}
 
