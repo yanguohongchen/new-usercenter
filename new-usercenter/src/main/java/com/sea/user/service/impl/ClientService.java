@@ -18,9 +18,9 @@ public class ClientService implements IClientService
 	// 直接预定义
 	ClientService()
 	{
-		clients.put("PCCLIENT", "@#$SLINFHNKL@#");
-		clients.put("PHONECLIENT", "@#$SDFFSDF@#");
-		clients.put("OTHERCLIENT", "@#$WPAF;SFD@#");
+		clients.put("PCCLIENT", "!sdfioaflksdxcijvn");
+		clients.put("PHONECLIENT", "!sdfioaflksdxcijvn");
+		clients.put("OTHERCLIENT", "!sdfioaflksdxcijvn");
 	}
 
 	@Autowired

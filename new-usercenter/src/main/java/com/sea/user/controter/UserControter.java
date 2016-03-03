@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sea.apidoc.Description;
 import com.sea.exception.BusinessException;
+import com.sea.framework.FireAuthority;
+import com.sea.framework.LoginStatus;
 import com.sea.framework.MsgResult;
+import com.sea.framework.Role;
 import com.sea.user.controter.param.User_Login_Param;
 import com.sea.user.controter.param.User_QueryUserByUserName_Param;
 import com.sea.user.controter.param.User_Register_Param;
@@ -42,7 +45,7 @@ public class UserControter
 
 	@Description("登录")
 	@RequestMapping("login")
-//	@FireAuthority(loginStatus=LoginStatus.LOGIN,role=Role.ADMIN)
+	@FireAuthority(loginStatus=LoginStatus.LOGIN,role=Role.ADMIN)
 	public MsgResult login(@Valid User_Login_Param param) throws BusinessException
 	{
 		userService.login(param.getUserName(), param.getPassword());

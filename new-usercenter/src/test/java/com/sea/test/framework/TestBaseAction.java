@@ -46,8 +46,8 @@ public abstract class TestBaseAction
 	public void testLoginRequest(String request, Map<String, String> params) throws Exception
 	{
 		MockHttpServletRequestBuilder tokenRequest = get("/auth/asscessToken");
-		tokenRequest.header("client_id", "PHONECLIENT");
-		tokenRequest.header("client_secret", "@#$SDFFSDF@#");
+		tokenRequest.param("client_id", "PHONECLIENT");
+		tokenRequest.param("client_secret", "!sdfioaflksdxcijvn");
 		if (params != null)
 		{
 			for (String param : params.keySet())
@@ -61,9 +61,9 @@ public abstract class TestBaseAction
 		JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
 		JsonElement data = jsonObject.get("data");
 		MockHttpServletRequestBuilder mockHttpServletRequestBuilder = get(request);
-		mockHttpServletRequestBuilder.header("client_id", "PHONECLIENT");
-		mockHttpServletRequestBuilder.header("client_secret", "@#$SDFFSDF@#");
-		mockHttpServletRequestBuilder.header("token", data.getAsString());
+		mockHttpServletRequestBuilder.param("client_id", "PHONECLIENT");
+		mockHttpServletRequestBuilder.param("client_secret", "!sdfioaflksdxcijvn");
+		mockHttpServletRequestBuilder.param("token", data.getAsString());
 		if (params != null)
 		{
 			for (String param : params.keySet())
@@ -87,8 +87,8 @@ public abstract class TestBaseAction
 	{
 		MockHttpServletRequestBuilder mockHttpServletRequestBuilder = get(request);
 
-		mockHttpServletRequestBuilder.header("client_id", "PHONECLIENT");
-		mockHttpServletRequestBuilder.header("client_secret", "@#$SDFFSDF@#");
+		mockHttpServletRequestBuilder.param("client_id", "PHONECLIENT");
+		mockHttpServletRequestBuilder.param("client_secret", "!sdfioaflksdxcijvn");
 		if (params != null)
 		{
 			for (String param : params.keySet())
