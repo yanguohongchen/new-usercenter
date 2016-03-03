@@ -53,7 +53,7 @@ public class UserService implements IUserService
 
 	public UserEntity getUserByUserName(String userName)
 	{
-		return null;
+		return userDao.getUserEntity(userName);
 	}
 
 	@Override

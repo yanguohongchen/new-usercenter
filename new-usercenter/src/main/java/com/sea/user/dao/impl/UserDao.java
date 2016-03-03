@@ -34,24 +34,25 @@ public class UserDao extends BaseDao<UserEntity> implements IUserDao
 		return this.getEntityById("id", userId);
 	}
 
-	public List<UserEntity> getUserEntityList(long userName)
+	@Override
+	public UserEntity getUserEntity(String userName)
 	{
 		String sqlStr = "select id,user_name,roles,user_status from user_entity where user_name=?";
 
-		return jdbcTemplate.query(sqlStr, new BeanPropertyRowMapper<UserEntity>(UserEntity.class), new Object[] { userName });
+		return jdbcTemplate.queryForObject(sqlStr, new BeanPropertyRowMapper<UserEntity>(UserEntity.class), new Object[] { userName });
 	}
 
 	@Override
 	public UserEntity getUserEntityByUserNameAndPasswd(String userName, String passwd)
 	{
-		String sqlStr = "select userId,userName,mobilePhone,nickName,role,userStatus from user_entity where userName=? and passwd = ?";
+		String sqlStr = "select id,user_name,roles,user_status from user_entity where user_name=? and password = ?";
 
 		return jdbcTemplate.queryForObject(sqlStr, new BeanPropertyRowMapper<UserEntity>(UserEntity.class), new Object[] { userName, passwd });
 	}
 
 	public List<UserEntity> getUserEntityS(long userId)
 	{
-		String sqlStr = "select userId,userName,mobilePhone,nickName,userStatus from user_entity where userStatus=?";
+		String sqlStr = "select id,user_name,user_status from user_entity where user_status=?";
 
 		return jdbcTemplate.query(sqlStr, new RowMapper<UserEntity>()
 		{
@@ -59,9 +60,9 @@ public class UserDao extends BaseDao<UserEntity> implements IUserDao
 			public UserEntity mapRow(ResultSet rs, int rowNum) throws SQLException
 			{
 				UserEntity user = new UserEntity();
-				user.setId(rs.getLong("userId"));
-				user.setUserName(rs.getString("userName"));
-				user.setUserStatus(rs.getInt("userStatus"));
+				user.setId(rs.getLong("id"));
+				user.setUserName(rs.getString("user_name"));
+				user.setUserStatus(rs.getInt("user_status"));
 				return user;
 			}
 		}, new Object[] { userId });
@@ -70,7 +71,7 @@ public class UserDao extends BaseDao<UserEntity> implements IUserDao
 
 	public void updateUser(UserEntity user)
 	{
-		this.updateEntityById("userId", user);
+		this.updateEntityById("id", user);
 	}
 
 }

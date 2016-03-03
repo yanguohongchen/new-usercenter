@@ -25,6 +25,7 @@ public class UserServiceTest extends BaseTest
 		user.setUserName("zhangsan7");
 		user.setRoles(Role.ADMIN + "," + Role.CONSUMER);
 		user.setUserStatus(UserStatus.NORMAL.getInt());
+		user.setPassword("1111111");
 		userService.register(user);
 		System.out.println(user.getId());
 	}
@@ -32,7 +33,7 @@ public class UserServiceTest extends BaseTest
 	@Test
 	public void getUserEntity()
 	{
-		UserEntity user = userService.getUserById(1);
+		UserEntity user = userService.getUserById(4);
 		System.out.println(user.getUserName());
 	}
 

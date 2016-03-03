@@ -30,7 +30,7 @@ import com.google.gson.JsonParser;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:spring-servlet.xml", "classpath:applicationContext.xml" })
 @WebAppConfiguration
-public abstract class TestBaseAction
+public abstract class TestLoginBaseAction
 {
 	@Autowired
 	private WebApplicationContext wac;
@@ -43,69 +43,6 @@ public abstract class TestBaseAction
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 	}
 
-	public void testLoginRequest(String request, Map<String, String> params) throws Exception
-	{
-		MockHttpServletRequestBuilder tokenRequest = get("/auth/asscessToken");
-		tokenRequest.header("client_id", "PHONECLIENT");
-		tokenRequest.header("client_secret", "@#$SDFFSDF@#");
-		if (params != null)
-		{
-			for (String param : params.keySet())
-			{
-				tokenRequest.param(param, params.get(param));
-			}
-		}
-		MvcResult mvcResult = this.mockMvc.perform(tokenRequest).andReturn();
-		MockHttpServletResponse response = mvcResult.getResponse();
-		String json = response.getContentAsString();
-		JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
-		JsonElement data = jsonObject.get("data");
-		MockHttpServletRequestBuilder mockHttpServletRequestBuilder = get(request);
-		mockHttpServletRequestBuilder.header("client_id", "PHONECLIENT");
-		mockHttpServletRequestBuilder.header("client_secret", "@#$SDFFSDF@#");
-		mockHttpServletRequestBuilder.header("token", data.getAsString());
-		if (params != null)
-		{
-			for (String param : params.keySet())
-			{
-				mockHttpServletRequestBuilder.param(param, params.get(param));
-			}
-		}
-		mvcResult = this.mockMvc.perform(mockHttpServletRequestBuilder).andReturn();
-		System.out.println("==================结果=======================");
-		response = mvcResult.getResponse();
-		json = response.getContentAsString();
-		System.out.println(json);
-		jsonObject = new JsonParser().parse(json).getAsJsonObject();
-		JsonElement code = jsonObject.get("status");
-		System.out.println("=============================================");
-		org.junit.Assert.assertNotEquals(500, code.getAsInt());
-
-	}
-
-	public void testTokenRequest(String request, Map<String, String> params) throws Exception
-	{
-		MockHttpServletRequestBuilder mockHttpServletRequestBuilder = get(request);
-
-		mockHttpServletRequestBuilder.header("client_id", "PHONECLIENT");
-		mockHttpServletRequestBuilder.header("client_secret", "@#$SDFFSDF@#");
-		if (params != null)
-		{
-			for (String param : params.keySet())
-			{
-				mockHttpServletRequestBuilder.param(param, params.get(param));
-			}
-		}
-		MvcResult mvcResult = this.mockMvc.perform(mockHttpServletRequestBuilder).andReturn();
-		System.out.println("==================结果=======================");
-		MockHttpServletResponse response = mvcResult.getResponse();
-		String json = response.getContentAsString();
-		System.out.println(json);
-		JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
-		JsonElement code = jsonObject.get("status");
-		System.out.println("=============================================");
-		org.junit.Assert.assertNotEquals(500, code.getAsInt());
-	}
 
 	public void testRequest(String request, Map<String, String> params) throws Exception
 	{

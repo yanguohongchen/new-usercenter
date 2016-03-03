@@ -62,6 +62,8 @@
 		</tx:attributes>
 	</tx:advice>
 
+	<bean id="redisCluserUtil" class="com.sea.framework.RedisClusterUtil" />
+
 	<aop:config>
 		<aop:pointcut id="pc"
 			expression="execution(public * com.sea.*.service.*.*(..))" /> <!--把事务控制在Service层 -->
@@ -75,7 +77,7 @@
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	
+
 	<context:component-scan base-package="com.zhouji">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Service" />
